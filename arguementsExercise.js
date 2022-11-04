@@ -43,21 +43,18 @@ function sum(...args) {
 //     }
 // }
 
-Function.prototype.myBind = function(context) {
-    debugger
-    let arr = Array.from(arguments);
-    let realArray = arr.slice(1);
-    let that = this;
+Function.prototype.myBind = function(context, ...args) {
     // debugger
+    let that = this;
 
-    return function() {
-        let obj = Array.from(arguments);
-        let finalArray = realArray.concat(obj);
-            // debugger
+    return function(...arr) {
+      // debugger
+        let finalArray = args.concat(arr);
 
         return that.apply(context, finalArray);
     }
 }
+
 
 class Cat {
     constructor(name) {
